@@ -1,31 +1,28 @@
-answers = [2, 1, 2, 3, 2, 1, 2, 3, 2, 4, 2, 5, 4, 5, 1, 2, 3, 1, 2, 3];
+answers = [1, 2, 3, 4, 5, 2, 3, 4, 5];
 answers1 = [1, 3, 2, 4, 2];
 
 function solution(answers) {
-  var answerCheck = [];
-  let max = 0;
-  const answer = [];
+  const patternOne = [1, 2, 3, 4, 5];
+  const patternTwo = [2, 1, 2, 3, 2, 4, 2, 5];
+  const patternThree = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5];
 
-  const test = [
-    [1, 2, 3, 4, 5],
-    [2, 1, 2, 3, 2, 4, 2, 5],
-    [3, 3, 1, 1, 2, 2, 4, 4, 5, 5],
-  ];
+  const patternOneL = patternOne.length;
+  const patternTwoL = patternTwo.length;
+  const patternThreeL = patternThree.length;
+  const count = [0, 0, 0];
+  for (let i = 0; i < answers.length; i++) {
+    if (answers[i] === patternOne[i % patternOneL]) count[0] += 1;
+    if (answers[i] === patternTwo[i % patternTwoL]) count[1] += 1;
+    if (answers[i] === patternThree[i % patternThreeL]) count[2] += 1;
+  }
 
-  test.forEach((d) => {
-    answerCheck.push(d.filter((n, i) => n == answers[i]));
+  const max = Math.max(...count);
+  const maxIndex = [];
+
+  count.forEach((d, i) => {
+    if (d == max) maxIndex.push(i + 1);
   });
-
-  answerCheck.forEach((d) => {
-    if (d.length > max) {
-      max = d.length;
-    }
-  });
-
-  answerCheck.forEach((d, i) => {
-    if (max <= d.length) answer.push(i + 1);
-  });
-  return answer;
+  return maxIndex;
 }
 
 console.log(solution(answers));
