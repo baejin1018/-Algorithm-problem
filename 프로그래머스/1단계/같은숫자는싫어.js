@@ -13,7 +13,6 @@ console.log(solution(arr));
 //===========================
 
 function solution(arr) {
-  var answer = [];
   return arr.filter((d, i) => d != arr[i + 1]);
 }
 console.log(solution(arr));
