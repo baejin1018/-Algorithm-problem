@@ -5,3 +5,4 @@ function solution(absolutes, signs) {
   });
   return rightNum;
 }
+
